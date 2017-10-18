@@ -157,7 +157,7 @@ export default {
         return
       }
 
-      if (db.groups[focus].length - sel.length <= 0) {
+      if (db.groups[focus].sels.length - sel.length <= 0) {
         if (typeof db.groups[focus - 1] !== 'undefined') {
           this.groups[focus - 1].sels = this.groups[focus - 1].sels.concat(this.groups[focus].sels)
           this.groups.splice(focus, 1)
@@ -216,10 +216,15 @@ export default {
             for (var k = 0; k < detail.length; k++) {
               var fName = detail[k].FieldName + '_' + groups[i].sels[j]
 
-              str += `[${fName}] as ${groups[i].sels[j]}\r\n`
+              str += `[${fName}] as ${detail[k].FieldName}`
+              if (k < detail.length - 1) {
+                str += ',\r\n'
+              } else {
+                str += '\r\n'
+              }
             }
 
-            str += `FROM ${dbName}.dbo.${groups[i].name}\r\nGO\r\n`
+            str += `FROM ${groups[i].name}\r\nGO\r\n`
           }
         }
       }
