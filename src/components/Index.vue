@@ -17,7 +17,7 @@
       <p>
         <select v-for="(item, index) in selData[selection.db].groups"
                 @focus="focusEvent(index)"
-                v-model="selection.groups[index].sels" multiple style="width: 100px;">
+                v-model="selection.groups[index].sels" multiple style="width: 150px;">
           <option v-for="item2 in groups[index].sels" :value="item2">{{ item2 }}</option>
         </select>
       </p>
@@ -25,7 +25,7 @@
         <input type="text" v-for="(item, index) in selData[selection.db].groups"
                v-model="selection.groups[index].name"
                @keyup="item.name=selection.groups[index].name"
-               style="width: 96px">
+               style="width: 146px">
       </p>
     </template>
     <input type="file"
